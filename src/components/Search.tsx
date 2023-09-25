@@ -19,7 +19,7 @@ function Search() {
   const [albums, setAlbums] = useState<Album[]>([]);
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [searchedArtist, setSearchedArtist] = useState<string>('');
-  const [resultText, setResultText] = useState<string>(''); 
+  const [resultText, setResultText] = useState<string>('');
 
   const handleArtistNameChange = (e: ChangeEvent<HTMLInputElement>) => {
     setArtistName(e.target.value);
@@ -37,10 +37,10 @@ function Search() {
         if (response.length === 0) {
           setErrorMessage('Nenhum álbum foi encontrado');
         } else {
-          setResultText(`Resultado de álbuns de: ${artistName}`); 
+          setResultText(`Resultado de álbuns de: ${artistName}`);
           setAlbums(response);
-          setSearchedArtist(artistName); 
-          setArtistName(''); 
+          setSearchedArtist(artistName);
+          setArtistName('');
         }
       } catch (error) {
         setIsLoading(false);
