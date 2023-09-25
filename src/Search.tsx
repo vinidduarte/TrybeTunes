@@ -1,6 +1,5 @@
 import React, { useState, ChangeEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
-import  searchAlbumsAPI  from './services/searchAlbumsAPI';
+import searchAlbumsAPI from './services/searchAlbumsAPI';
 
 interface Album {
   artistId: number;
@@ -14,7 +13,6 @@ interface Album {
 }
 
 function Search() {
-  const navigate = useNavigate();
   const [artistName, setArtistName] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [albums, setAlbums] = useState<Album[]>([]);
@@ -38,8 +36,8 @@ function Search() {
           setErrorMessage('Nenhum álbum foi encontrado');
         } else {
           setAlbums(response);
-          setSearchedArtist(artistName); 
-          setArtistName(''); 
+          setSearchedArtist(artistName);
+          setArtistName('');
         }
       } catch (error) {
         setIsLoading(false);
@@ -53,14 +51,14 @@ function Search() {
       <h2>Pesquisar Álbuns</h2>
       <input
         type="text"
-        value={artistName}
-        onChange={handleArtistNameChange}
+        value={ artistName }
+        onChange={ handleArtistNameChange }
         data-testid="search-artist-input"
         placeholder="Digite o nome da banda ou artista"
       />
       <button
-        onClick={handleSearch}
-        disabled={artistName.length < 2 || isLoading}
+        onClick={ handleSearch }
+        disabled={ artistName.length < 2 || isLoading }
         data-testid="search-artist-button"
       >
         {isLoading ? 'Carregando...' : 'Pesquisar'}
@@ -68,13 +66,18 @@ function Search() {
       {errorMessage && <p>{errorMessage}</p>}
       {albums.length > 0 && (
         <div>
-          <p>Resultado de álbuns de: {searchedArtist}</p> {}
+          <p>
+            Resultado de álbuns de:
+            {searchedArtist}
+          </p>
+          {' '}
+          {}
           <ul>
             {albums.map((album) => (
-              <li key={album.collectionId}>
+              <li key={ album.collectionId }>
                 <a
-                  href={`/album/${album.collectionId}`}
-                  data-testid={`link-to-album-${album.collectionId}`}
+                  href={ `/album/${album.collectionId}` }
+                  data-testid={ `link-to-album-${album.collectionId}` }
                 >
                   {album.collectionName}
                 </a>
